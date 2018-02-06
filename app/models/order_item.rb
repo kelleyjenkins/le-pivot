@@ -19,4 +19,6 @@ class OrderItem < ApplicationRecord
     average(:quantity).to_i
   end
 
+ 
+
 end

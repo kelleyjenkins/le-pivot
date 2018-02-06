@@ -37,4 +37,13 @@ class Order < ApplicationRecord
   def self.shop_total_gross
 		where(status: :completed).joins(:items).sum(:price)
   end
+
+  def self.return_orders_by_status(status)
+    if status == "paid" || status == "ordered"  || status == "cancelled" || status == "completed"
+      return Order.filter_by_status(status)
+    else
+      Order.all
+    end
+  end
+
 end

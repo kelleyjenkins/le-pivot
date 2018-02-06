@@ -60,10 +60,7 @@
         </tbody>
     </table>
     <div class="total">
-      <% sum = 0 %>
-      <% @items.each do |item, quantity| %>
-        <% sum += (item.price * quantity) %>
-      <% end %>
+      
       <p><b>Total: <%= number_to_currency(sum) %></b></p>
     </div>
     <div class="checkout">

@@ -42,7 +42,16 @@ class Cart
   end
 
   def destroy
-    @contents.clear
+    contents.clear
   end
+
+
+  def total 
+    sum = 0
+    contents.each do |item, quantity|
+      sum += (item.price * quantity) 
+    end
+  end 
+
 
 end
