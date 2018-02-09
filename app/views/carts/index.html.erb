@@ -1,3 +1,72 @@
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+          <% if current_user  %>
+            <h3> <%= current_user.first_name %>'s  Cart</h3>
+          <% else %>
+            <h3> Your Cart </h3>
+          <% end %>
+          <p>Explore the items in your cart below or <%= link_to "Continue Shopping", items_path %></p>
+          <p></p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+        
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th></th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
+                <th></th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @items.each do |item, quantity| %>
+              <div class="item-#{item.id}">
+              <tr>
+                <td><%= link_to item.title, item_path(item) %></td>
+                <td><%= image_tag item.image, :size => "50x50"%></td>
+                <td>$<%= item.price %></td>
+                <td><%= quantity %></td>
+                <td><%= link_to "-", cart_path(id: item.id, condition: "decrease"), action: :update, method: :patch, class: "btn btn-xs btn-pill btn-danger" %>  <%= link_to "+", cart_path(id: item.id, condition: "increase"), action: :update, method: :patch, class: "btn btn-xs btn-pill btn-success" %>  </td>
+                <td><%= link_to "Remove", cart_path(id: item.id), method: :delete, class: "btn btn-xs btn-pill btn-danger" %></td>
+                <td>$<%= quantity * item.price %></td>
+              </tr>
+              </div>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% if false %>
 <style>
 .cart_image{
   width: 3em;
@@ -21,6 +90,11 @@
         font-size: 3em;
       }
 </style>
+
+
+
+
+
 <div class="container">
   <% if current_user  %>
     <h3> <%= current_user.first_name %>'s  Cart</h3>
@@ -73,7 +147,8 @@
         <%= link_to "Login", login_path %> <br />
         <%= link_to "Create new account", new_user_path %>
       <% end %>
-    </div>
+    </div>  
     <!-- </div> -->
   </center>
 </div>
+<% end%>
