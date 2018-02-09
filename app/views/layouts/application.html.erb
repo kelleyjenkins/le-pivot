@@ -12,7 +12,9 @@
   <body>
     <%= render "shared/nav" %>
     <div class="container">
-      
+
+
+    <% if false %>  
       <% if flash.count > 0  %>
         <div class="center-block" style= "width: 15rem;">
           <div class="alert alert-primary alert-dismissable" role="alert">
@@ -20,8 +22,11 @@
               <span aria-hidden="true">&times;</span>
             </button>
           <% end  %>
+    <% end %>
+
+
           <% flash.each do |name, msg| %>
-            <%= content_tag :div, raw(msg), class: name %>
+            <%= content_tag :div, raw(msg), class: "alert alert-success" %>
           <% end %>
           </div>
         </div>
