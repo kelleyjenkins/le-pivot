@@ -96,6 +96,7 @@ RSpec.describe User, type: :model do
     before(:each) do
       @user = create(:user)
       @item = create(:item)
+      @store = create(:store)
       @order_1 = create(:order, status: 1, user: @user)
       @order_2 = create(:order, status: 1, user: @user)
       @order_3 = create(:order, status: 2, user: @user)
@@ -103,7 +104,7 @@ RSpec.describe User, type: :model do
       @order_5 = create(:order, status: 1, user: @user)
       @order_6 = create(:order, status: 2, user: @user)
 
-      @order_item1 = create(:order_item, item: @item, order: @order_1)
+      @order_item1 = create(:order_item, item: @item, order: @order_1, store: @store)
 
     end
 
