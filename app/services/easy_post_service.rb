@@ -16,6 +16,7 @@ class EasyPostService
   end
 
 
+
   def get_verification
     response = connection.post("/v2/addresses") do |f|
       f.params = verification_params
@@ -43,8 +44,8 @@ class EasyPostService
       f.params = shipping_rate_params
     end
     JSON.parse(response.body, symbolize_names: true)
-    # binding.pry
   end
+
 
 
   def shipping_rate_params
@@ -88,6 +89,7 @@ class EasyPostService
       "shipment[from_address][street1]":"1331 17th Street",
       "shipment[from_address][street2]":"L100",
       "shipment[from_address][country]":"US",
+      "shipment[from_address][zip]":"80202",
       "shipment[from_address][phone]":"3038765309",
       "shipment[from_address][email]":"blbillington1@gmail.com",
       "shipment[parcel][length]":"12",
