@@ -47,7 +47,7 @@
               <div class="checkout">
 
                   <%= link_to "Return to Cart", cart_path, class: "btn btn-lg btn-pill btn-primary" %>
-                  <%= link_to "Checkout", new_order_path, class: "btn btn-lg btn-pill btn-primary" %>
+                  <%= link_to "Checkout", new_order_path(shipping: @shipping_rates.grand_total_priority(@cart_decorator.total), total: @cart_decorator.total), class: "btn btn-lg btn-pill btn-primary" %>
 
               </div>
               <!-- </div> -->

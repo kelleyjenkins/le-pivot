@@ -35,17 +35,18 @@ class Order < ApplicationRecord
   end
 
 
-  def order_total(order) #based off a user's order
-    price_and_quantity(order).map do |price, quantity|
+  def order_total #based off a user's order
+    price_and_quantity.map do |price, quantity|
       price * quantity
     end.sum
   end
 
 
-  def price_and_quantity(order)
+  def price_and_quantity
     hash = {}
     order_items.each do |item|
       hash[item.unit_price] = item.quantity
+      # binding.pry
     end
     hash
   end
@@ -54,20 +55,16 @@ class Order < ApplicationRecord
     where(status: status)
   end
 
-  def create_order_with_associations(user, cart)
+  def create_order_with_associations(user, cart, rate, total)
+    grand_total = rate.to_f + total.to_f
+    order = Order.create!(status: "ordered", user_id: user.id, total: (grand_total))
     cart_items = cart.contents.map do |item_id, quantity|
       CartItem.new(item_id, quantity)
     end
 
-    order = Order.create(status: "ordered", user_id: user.id, total: order_total(order))
-
     cart_items.each do |cart_item|
       OrderItem.create(item_id: cart_item.item.id, order_id: order.id, quantity: cart_item.quantity, unit_price: cart_item.item.price, store_id: cart_item.store.id)
     end
-
-    # order_item.update(store_id: item.store_id, unit_price: item.price)
-    # order_total = OrderItem.where(order_id: order.id).map{|oi| oi.unit_price * oi.quantity}.sum
-    # order.update(total: order_total)
 
   end
 

@@ -1,10 +1,10 @@
 class ChargesController < ApplicationController
-  
+
   def create
   order = Order.find(params[:order_id])
 
   # Amount in cents
-  @amount = (order.order_total(order) * 100).to_i
+  @amount = (order.order_total * 100).to_i
 
   customer = Stripe::Customer.create(
     :email => params[:stripeEmail],

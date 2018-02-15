@@ -53,7 +53,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-12"> 
+        <div class="col-xs-12">
           <p></p>
         </div>
     </div>
@@ -65,7 +65,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-        
+
           <table class="table table-striped">
             <thead>
               <tr>
@@ -84,13 +84,19 @@
                 <td><%= OrderItem.find_by(item: item, order: @order).quantity %></td>
                 <td><%= number_to_currency(item.price) %></td>
               </tr>
+              <tr>
+                <td> (Shipping)</td>
+                <td></td>
+                <td></td>
+                <td><%= number_to_currency(@order.total - item.price) %></td>
+              </tr>
               </div>
               <% end %>
             </tbody>
           </table>
 
 
-        
+
         </div>
     </div>
 </div>
@@ -106,12 +112,12 @@
 
 
           <div class="statcard p-a-md">
-            <h3 class="statcard-number"><%= number_to_currency(@order.order_total(@order)) %></h3>
+            <h3 class="statcard-number"><%= number_to_currency(@order.order_total) %></h3>
             <span class="statcard-desc">Total</span>
           </div>
 
 
-  
+
         </div>
     </div>
 </div>
