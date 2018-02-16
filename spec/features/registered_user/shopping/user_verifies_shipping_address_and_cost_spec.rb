@@ -19,7 +19,7 @@ feature "As an authenticated user" do
 
           visit shipping_path #(errors out, and I cant seem to intercept the controller call. Should I make a fake test controller since this is a weird multi-part post/get API call?)
           #I could just skip the feature test and work only on
-          save_and_open_page
+
           @shipping_rates = ShippingRate.rate(user, package)
 
           expect(current_path).to eq(shipping_path)

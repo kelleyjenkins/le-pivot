@@ -24,7 +24,7 @@ RSpec.feature "User can place an order" do
     click_on "Calculate Shipping"
 
     expect(current_path).to eq('/shipping')
-save_and_open_page
+  
     click_link "Checkout"
 
 
