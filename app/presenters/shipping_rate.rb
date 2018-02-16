@@ -4,7 +4,7 @@ class ShippingRate
   attr_reader :retail_rate_priority, :message
 
   def initialize(rate)
-    if rate[:messages]
+    if rate[:messages] != []
       @message = rate[:messages][0][:message]
     else
     @retail_rate_first = rate[:rates][0][:retail_rate]

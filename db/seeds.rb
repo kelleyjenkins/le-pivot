@@ -60,7 +60,7 @@ class Seed
   def update_orders_with_totals
     Order.all.each do |order|
       order_total = OrderItem.where(order_id: order.id).map{|oi| oi.unit_price * oi.quantity}.sum
-      order.update(total: order_total)
+      order.update(total: order_total, shipping: 5.0)
 
     end
   end
@@ -131,17 +131,17 @@ class Seed
   user5 = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, password: Faker::Internet.password, address: "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state_abbr}, #{Faker::Address.zip}", email: Faker::Internet.email)
   UserRole.create(user: user5, role: role4)
 
-  order1 = Order.create(user: user1, status: "paid")
-  order2 = Order.create(user: user1, status: "completed")
-  order3 = Order.create(user: user2, status: "paid")
-  order4 = Order.create(user: user2, status: "completed")
-  order5 = Order.create(user: user2, status: "ordered")
+  order1 = Order.create(user: user1, status: "paid", total: 1000, shipping: 5.00)
+  order2 = Order.create(user: user1, status: "completed", total: 1100, shipping: 5.00)
+  order3 = Order.create(user: user2, status: "paid", total: 1000, shipping: 5.00)
+  order4 = Order.create(user: user2, status: "completed", total: 1035, shipping: 5.00)
+  order5 = Order.create(user: user2, status: "ordered", total: 1000, shipping: 5.00)
 
-  order6 = Order.create(user: user3, status: "paid")
-  order7 = Order.create(user: user3, status: "completed")
-  order8 = Order.create(user: user4, status: "paid")
-  order9 = Order.create(user: user4, status: "completed")
-  order10 = Order.create(user: user5, status: "ordered")
+  order6 = Order.create(user: user3, status: "paid", total: 1001, shipping: 5.00)
+  order7 = Order.create(user: user3, status: "completed", total: 1020, shipping: 5.00)
+  order8 = Order.create(user: user4, status: "paid", total: 1050, shipping: 5.00)
+  order9 = Order.create(user: user4, status: "completed", total: 1900, shipping: 5.00)
+  order10 = Order.create(user: user5, status: "ordered", total: 1400, shipping: 5.00)
 
   josh1 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: comic_store)
   josh2 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: little_shop_og)
@@ -167,11 +167,11 @@ class Seed
   UserRole.create(user: ian4, role: role2)
   UserRole.create(user: ian5, role: role2)
 
-  cory = User.create(first_name: "Cory", last_name: "Westerfield", email: "cory@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202")
+  corey = User.create(first_name: "Corey", last_name: "Westerfield", email: "corey@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202")
   UserRole.create(user: corey, role: role1)
 
-  UserRole.create(user: cory, role: role1)
-  
+  UserRole.create(user: corey, role: role1)
+
   def run
     associate_items_with_stores
     associate_users_with_stores

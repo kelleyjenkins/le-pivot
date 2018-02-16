@@ -88,18 +88,12 @@
                 <th>(Shipping)</th>
                 <th></th>
                 <th></th>
-                <th>Price</th>
+                <th><%=@order.shipping%></th>
               </tr>
             </thead>
             <tbody>
 
-              <div class="item-#{item.id}">
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><%= number_to_currency(@order.total - item.price) %></td>
-              </tr>
+              
               </div>
               <% end %>
             </tbody>
@@ -122,7 +116,7 @@
 
 
           <div class="statcard p-a-md">
-            <h3 class="statcard-number"><%= number_to_currency(@order.order_total) %></h3>
+            <h3 class="statcard-number"><%= number_to_currency(@order.grand_total) %></h3>
             <span class="statcard-desc">Total</span>
           </div>
 

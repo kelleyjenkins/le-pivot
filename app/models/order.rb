@@ -34,6 +34,10 @@ class Order < ApplicationRecord
 		where(status: :completed).joins(:items).sum(:price)
   end
 
+  def grand_total
+    total + shipping
+  end 
+
 
   def order_total #based off a user's order
     price_and_quantity.map do |price, quantity|
@@ -56,8 +60,9 @@ class Order < ApplicationRecord
   end
 
   def create_order_with_associations(user, cart, rate, total)
-    grand_total = rate.to_f + total.to_f
-    order = Order.create!(status: "ordered", user_id: user.id, total: (grand_total))
+
+    order = Order.create!(status: "ordered", user_id: user.id, total: total, shipping: rate)
+    # binding.pry
     cart_items = cart.contents.map do |item_id, quantity|
       CartItem.new(item_id, quantity)
     end
