@@ -4,7 +4,7 @@ class ShippingController < ApplicationController
     @cart_decorator = CartDecorator.new(@cart)
     package = PackageDecorator.new(@cart)
     @shipping_rates = ShippingRate.rate(current_user, package)
-    binding.pry
+    # binding.pry
   end
 
 end
