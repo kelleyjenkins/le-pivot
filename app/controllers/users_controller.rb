@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+
   def new
     @user = User.new
   end
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
       redirect_to admin_store_dashboard_index_path(current_user.store)
     elsif current_platform_admin?
       current_user.update(user_params)
-      redirect_to admin_dashboard_index_path
+      redirect_to admin_store_dashboard_index_path(current_user.store)
     elsif current_user != nil
       current_user.update(user_params)
       flash[:notice] = "Successfully updated your account information"
@@ -42,5 +43,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :address, :address_2, :city, :state, :zip, :phone)
   end
-
 end

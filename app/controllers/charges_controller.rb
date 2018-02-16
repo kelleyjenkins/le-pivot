@@ -1,22 +1,26 @@
 class ChargesController < ApplicationController
-  
+
   def create
   order = Order.find(params[:order_id])
 
   # Amount in cents
   @amount = (order.order_total(order) * 100).to_i
 
-  customer = Stripe::Customer.create(
-    :email => params[:stripeEmail],
-    :source  => params[:stripeToken]
-  )
+  if !current_user.stripe_id
+    customer = Stripe::Customer.create(
+      :email => params[:stripeEmail],
+      :source  => params[:stripeToken]
+    )
+    current_user.update!(stripe_id: customer.id, stripe_token: params[:stripeToken])
+  end
 
-  charge = Stripe::Charge.create(
-    :customer    => customer.id,
-    :amount      => @amount,
-    :description => 'Rails Stripe customer',
-    :currency    => 'usd'
-  )
+    charge = Stripe::Charge.create(
+      :customer    => current_user.stripe_id,
+      :amount      => @amount,
+      :description => 'Rails Stripe customer',
+      :currency    => 'usd'
+    )
+
 
 
   order.paid!

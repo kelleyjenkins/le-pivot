@@ -95,8 +95,10 @@ RSpec.describe User, type: :model do
   context "class methods" do
     before(:each) do
       @user = create(:user)
+
       @store =create(:store)
       @item = create(:item, store: @store)
+
       @order_1 = create(:order, status: 1, user: @user)
       @order_2 = create(:order, status: 1, user: @user)
       @order_3 = create(:order, status: 2, user: @user)
