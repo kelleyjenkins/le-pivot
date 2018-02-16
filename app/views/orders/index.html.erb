@@ -25,7 +25,7 @@
                   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                           data-description="Your order"
-                          data-amount= "<%= order.order_total(order) * 100 %>"
+                          data-amount= "<%= order.total * 100 %>"
                           data-locale="auto"></script>
                 <% end %>
               <% end %>
