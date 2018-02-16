@@ -15,7 +15,7 @@ RSpec.feature "User can place an order" do
     visit cart_path
 
     within(".checkout") do
-      click_on("Login")
+      click_link("Login")
     end
 
     fill_in "session[email]", with: "testerson@testmail.com"
@@ -25,11 +25,16 @@ RSpec.feature "User can place an order" do
 
     click_on "Cart"
 
-    expect(page).to have_content("Checkout")
+    expect(page).to have_content("Calculate Shipping")
 
-    click_on "Checkout"
+    click_on "Calculate Shipping"
 
-    expect(current_path).to eq('/orders')
+    expect(current_path).to eq('/shipping')
+
+    within ".btn" do
+      click_link "Checkout"
+    end
+
     expect(page).to have_content("Order was successfully placed")
   end
 end
