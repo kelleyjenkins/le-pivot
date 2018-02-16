@@ -70,6 +70,7 @@ class Seed
     Order.all.each do |order|
       order_total = OrderItem.where(order_id: order.id).map{|oi| oi.unit_price * oi.quantity}.sum
       order.update(total: order_total)
+
     end
   end
 
@@ -151,11 +152,11 @@ class Seed
   order9 = Order.create(user: user4, status: "completed")
   order10 = Order.create(user: user5, status: "ordered")
 
-  josh1 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", store: comic_store)
-  josh2 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", store: little_shop_og)
-  josh3 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", store: movie_store)
-  josh4 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", store: manga_store)
-  josh5 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", store: tv_show_store)
+  josh1 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: comic_store)
+  josh2 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: little_shop_og)
+  josh3 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: movie_store)
+  josh4 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: manga_store)
+  josh5 = User.create(first_name: "Josh", last_name: "Mejia", email: "josh@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: tv_show_store)
 
   UserRole.create(user: josh1, role: role3)
   UserRole.create(user: josh2, role: role3)
@@ -163,11 +164,11 @@ class Seed
   UserRole.create(user: josh4, role: role3)
   UserRole.create(user: josh5, role: role3)
 
-ian1 = User.create(first_name: "Ian", last_name: "Mejia", email: "ian@turing.io", password: "password", address: "Turing", store: comic_store)
-ian2 = User.create(first_name: "Ian", last_name: "Mejia", email: "ian@turing.io", password: "password", address: "Turing", store: little_shop_og)
-ian3 = User.create(first_name: "Ian", last_name: "Mejia", email: "ian@turing.io", password: "password", address: "Turing", store: movie_store)
-ian4 = User.create(first_name: "Ian", last_name: "Mejia", email: "ian@turing.io", password: "password", address: "Turing", store: manga_store)
-ian5 = User.create(first_name: "Ian", last_name: "Mejia", email: "ian@turing.io", password: "password", address: "Turing", store: tv_show_store)
+  ian1 = User.create(first_name: "Ian", last_name: "Mejia", email: "ian@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: comic_store)
+  ian2 = User.create(first_name: "Ian", last_name: "Mejia", email: "ian@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: little_shop_og)
+  ian3 = User.create(first_name: "Ian", last_name: "Mejia", email: "ian@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: movie_store)
+  ian4 = User.create(first_name: "Ian", last_name: "Mejia", email: "ian@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: manga_store)
+  ian5 = User.create(first_name: "Ian", last_name: "Mejia", email: "ian@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202", store: tv_show_store)
 
   UserRole.create(user: ian1, role: role2)
   UserRole.create(user: ian2, role: role2)
@@ -175,11 +176,11 @@ ian5 = User.create(first_name: "Ian", last_name: "Mejia", email: "ian@turing.io"
   UserRole.create(user: ian4, role: role2)
   UserRole.create(user: ian5, role: role2)
 
-  corey = User.create(first_name: "Cory", last_name: "Westerfield", email: "corey@turing.io", password: "password", address: "Turing")
-  UserRole.create(user: corey, role: role1)
+  cory = User.create(first_name: "Cory", last_name: "Westerfield", email: "cory@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202")
+
+  UserRole.create(user: cory, role: role1)
 
 end
-
 
 
 

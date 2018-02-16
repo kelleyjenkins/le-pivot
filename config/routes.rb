@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :items, only: [:index, :show, :edit, :create, :new, :update]
       resources :users, only: [:index, :show, :edit, :create, :new, :update]
       resources :dashboard, only: [:index]
+      resources :analytics, only: [:index]
     end
 
     resources :dashboard, only: [:index]
@@ -37,8 +38,8 @@ Rails.application.routes.draw do
   resources :users , only: [:new, :create, :edit, :update]
   resources :orders, only: [:index, :new, :show, :update]
   resources :dashboard, only: [:index]
-  # resources :items, only: [:index, :show]
 
+  get '/shipping', :to => 'shipping#show', :as => 'shipping'
   get '/cart', :to => 'carts#index', :as => 'cart'
   resources :carts, only: [:index, :create, :destroy]
   patch '/cart', :to => 'carts#update'

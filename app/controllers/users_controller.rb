@@ -18,7 +18,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_store_admin?
+    if current_store_admin? || current_store_manager?
+      current_user.update(user_params)
+      redirect_to admin_store_dashboard_index_path(current_user.store)
+    elsif current_platform_admin?
       current_user.update(user_params)
       redirect_to admin_store_dashboard_index_path(current_user.store)
     elsif current_user != nil
@@ -38,6 +41,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :address)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :address, :address_2, :city, :state, :zip, :phone)
   end
 end

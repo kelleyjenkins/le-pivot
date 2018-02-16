@@ -46,6 +46,7 @@
         <% end %>
         <li> <a href="/carts">Cart (<%= @cart.total_count %>)</a> </li>
         <% if current_user %>
+          <li> <%= link_to " Navigating as #{current_user.first_name}" %></li>
           <li> <%= link_to 'Logout', logout_path, method: :delete %></li>
         <% end %>
 
@@ -94,6 +95,9 @@
     <span class="badge badge-secondary"><%= @cart.total_count %></span>
   </li>
   <% if current_user %>
+    <li class="nav-item">
+      <%= link_to "Logged in as: '#{current_user.first_name}' ", edit_user_path(current_user), class: "nav-link active" %>
+    </li>
     <li class="nav-item">
       <%= link_to 'Logout', logout_path, method: :delete, class: "nav-link active" %>
     </li>

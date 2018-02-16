@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180214215712) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -100,6 +101,11 @@ ActiveRecord::Schema.define(version: 20180214215712) do
     t.bigint "store_id"
     t.string "stripe_id"
     t.string "stripe_token"
+    t.string "address_2"
+    t.string "city"
+    t.string "state"
+    t.integer "zip"
+    t.string "phone"
     t.index ["store_id"], name: "index_users_on_store_id"
   end
 
