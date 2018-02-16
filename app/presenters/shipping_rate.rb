@@ -12,10 +12,10 @@ class ShippingRate
     @retail_rate_express = rate[:rates][2][:retail_rate]
     @retail_rate_priority = rate[:rates][3][:retail_rate]
     end
+
   end
 
   def self.rate(user, package)
-
     ShippingRate.new(call_easy_post(user, package).get_rates)
   end
 
