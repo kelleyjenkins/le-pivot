@@ -170,7 +170,6 @@ class Seed
   corey = User.create(first_name: "Corey", last_name: "Westerfield", email: "corey@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202")
   UserRole.create(user: corey, role: role1)
 
-  UserRole.create(user: corey, role: role1)
 
   def run
     associate_items_with_stores
