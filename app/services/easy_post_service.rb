@@ -15,30 +15,6 @@ class EasyPostService
     end
   end
 
-
-
-  def get_verification
-    response = connection.post("/v2/addresses") do |f|
-      f.params = verification_params
-    end
-    JSON.parse(response.body, symbolize_names: true)
-  end
-
-  def verification_params
-    params = {
-      "address[street1]" => "417 Montgomery Street",
-      "verify[]" => "delivery",
-      "address[street2]" => "5",
-      "address[city]" => "SF",
-      "address[zip]" => "94104",
-      "address[country]" => "US",
-      "address[company]" => "EasyPost",
-      "address[phone]" => "415-123-4567"
-    }
-  end
-
-
-
   def get_rates
     response = connection.post("/v2/shipments") do |f|
       f.params = shipping_rate_params
@@ -99,5 +75,24 @@ class EasyPostService
       }
   end
 
+  # def get_verification
+  #   response = connection.post("/v2/addresses") do |f|
+  #     f.params = verification_params
+  #   end
+  #   JSON.parse(response.body, symbolize_names: true)
+  # end
+  #
+  # def verification_params
+  #   params = {
+  #     "address[street1]" => "417 Montgomery Street",
+  #     "verify[]" => "delivery",
+  #     "address[street2]" => "5",
+  #     "address[city]" => "SF",
+  #     "address[zip]" => "94104",
+  #     "address[country]" => "US",
+  #     "address[company]" => "EasyPost",
+  #     "address[phone]" => "415-123-4567"
+  #   }
+  # end
 
 end
