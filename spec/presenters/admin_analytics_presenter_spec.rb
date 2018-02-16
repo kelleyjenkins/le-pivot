@@ -3,7 +3,7 @@ require 'rails_helper'
 describe AdminAnalyticsPresenter do
   let(:analytics) { AdminAnalyticsPresenter.new}
   before do
-    user = create(:user)
+    user = create(:)
     store = create(:store)
     items = create_list(:item, 5, store: store)
     order_1 = create(:order, user: user)

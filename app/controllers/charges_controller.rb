@@ -4,7 +4,7 @@ class ChargesController < ApplicationController
   order = Order.find(params[:order_id])
 
   # Amount in cents
-  @amount = (order.order_total(order) * 100).to_i
+  @amount = (order.order_total * 100).to_i
 
   if !current_user.stripe_id
     customer = Stripe::Customer.create(
