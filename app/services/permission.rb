@@ -45,7 +45,7 @@ class Permission
       return true if controller == 'admin/stores/dashboard' && action.in?(%w(index))
       return true if controller == 'shipping' && action.in?(%w(show))
       return true if controller == 'users' && action.in?(%w(create new edit update))
-
+      return true if controller == 'charges' && action.in?(%w(new index create))
     end
 
     def store_manager_permissions
@@ -61,8 +61,7 @@ class Permission
       return true if controller == 'admin/stores/dashboard' && action.in?(%w(index))
       return true if controller == 'shipping' && action.in?(%w(show))
       return true if controller == 'users' && action.in?(%w(edit update))
-
-
+      return true if controller == 'charges' && action.in?(%w(new index create))
     end
 
     def registered_user_permissions
@@ -76,7 +75,6 @@ class Permission
       return true if controller == 'dashboard' && action.in?(%w(index))
       return true if controller == 'shipping' && action.in?(%w(show))
       return true if controller == 'users' && action.in?(%w(edit update))
-
     end
 
     def unregistered_user_permissions
