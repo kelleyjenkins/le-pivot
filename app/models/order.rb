@@ -12,8 +12,6 @@ class Order < ApplicationRecord
     items.sum(:price)
   end
 
-
-
   def date
     created_at.strftime('%b. %d, %Y')
   end
@@ -36,10 +34,10 @@ class Order < ApplicationRecord
 
   def grand_total
     total + shipping
-  end 
+  end
 
 
-  def order_total #based off a user's order
+  def order_total
     price_and_quantity.map do |price, quantity|
       price * quantity
     end.sum
@@ -50,7 +48,6 @@ class Order < ApplicationRecord
     hash = {}
     order_items.each do |item|
       hash[item.unit_price] = item.quantity
-      # binding.pry
     end
     hash
   end
@@ -62,7 +59,6 @@ class Order < ApplicationRecord
   def create_order_with_associations(user, cart, rate, total)
 
     order = Order.create!(status: "ordered", user_id: user.id, total: total, shipping: rate)
-    # binding.pry
     cart_items = cart.contents.map do |item_id, quantity|
       CartItem.new(item_id, quantity)
     end
@@ -73,7 +69,6 @@ class Order < ApplicationRecord
 
   end
 
-#This method might only be used in tests.
   def items_with_quantity(cart_hash)
     cart_hash.contents.inject({}) do |hash, (item_id, quantity)|
       hash[Item.find(item_id)] = quantity
