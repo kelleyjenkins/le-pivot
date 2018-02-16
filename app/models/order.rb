@@ -50,7 +50,7 @@ class Order < ApplicationRecord
     hash = {}
     order_items.each do |item|
       hash[item.unit_price] = item.quantity
-      # binding.pry
+      #  
     end
     hash
   end
@@ -62,7 +62,7 @@ class Order < ApplicationRecord
   def create_order_with_associations(user, cart, rate, total)
 
     order = Order.create!(status: "ordered", user_id: user.id, total: total, shipping: rate)
-    # binding.pry
+    #  
     cart_items = cart.contents.map do |item_id, quantity|
       CartItem.new(item_id, quantity)
     end

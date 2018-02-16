@@ -11,29 +11,6 @@ describe "order item methods" do
     expect(quantity_hash).to eq(expected_result)
   end
 
-  it "can return top three items" do
-    item_1 = create(:item)
-    item_2 = create(:item)
-    item_3 = create(:item)
-    item_4 = create(:item)
-    order_1 = create(:order)
-    order_2 = create(:order)
-
-    2.times do
-      order_1.items << item_1
-      order_2.items << item_2
-      order_2.items << item_4
-    end
-
-    order_2.items << item_3
-
-    top_items = OrderItem.top_three_items
-    expect(top_items.count).to eq(3)
-    expect(top_items).to include(item_1)
-    expect(top_items).to include(item_2)
-    expect(top_items).to include(item_4)
-    expect(top_items).to_not include(item_3)
-  end
 
   it "can average quantity" do
     item_1 = create(:item)

@@ -347,6 +347,9 @@ context "we get a response with rates" do
           expect(subject.message).to eq("Unable to retrieve USPS rates without a valid destination zip code.")
       end
     end
+
+
+
   end
 
 
