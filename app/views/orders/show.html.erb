@@ -85,10 +85,8 @@
                 <td><%= number_to_currency(item.price) %></td>
               </tr>
                <tr>
-                <th>(Shipping)</th>
                 <th></th>
                 <th></th>
-                <th><%=number_to_currency(@order.shipping)%></th>
               </tr>
             </thead>
             <tbody>
@@ -98,6 +96,8 @@
               <% end %>
             </tbody>
           </table>
+          <th>(Shipping)</th>
+          <th><%=number_to_currency(@order.shipping)%></th>
 
 
 

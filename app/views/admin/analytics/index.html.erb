@@ -12,7 +12,15 @@
   </div>
 </div>
 
+
   <div class="container">
+    <h4>
+      <br>
+      Total shop sales to date: <%= number_to_currency(@analytics.total_sales) %>. <br>
+      Total completed orders: <%= @analytics.completed_orders %> <br>
+      Average number of items per order: <%= @analytics.average_quantity_purchased %><br>
+
+    </h4>
     <div class="row">
       <div class="col-xs-12">
         <table class="table table-hover">
@@ -59,11 +67,7 @@
         </tbody>
       </table>
 
-    <p>
-      Total shop sales to date: <%= number_to_currency(@analytics.total_sales) %>. <br>
-      Total completed orders: <%= @analytics.completed_orders %> <br>
-      Average number of onsies per order: <%= @analytics.average_quantity_purchased %>
-    </p>
+
 
     <div class="container">
       <div class="row">
@@ -73,6 +77,7 @@
           <tr>
             <th><i>Item<i></th>
             <th><center><i>Quantity Sold To-Date<i></center></th>
+            <th><center><i>Sales To-Date<i></center></th>
           </tr>
         </thead>
 
@@ -81,6 +86,7 @@
           <tr>
             <th scope="row"><%= key %></th>
             <td><center><%= value %></center></td>
+            <td><center><%= number_to_currency(Item.find_by(title: key).price * value) %></center></td>
           </tr>
           <% end %>
         </tbody>
