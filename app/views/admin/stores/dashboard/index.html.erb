@@ -26,7 +26,9 @@
         <li class="nav-item"> <%= link_to "Orders", admin_store_dashboard_index_path(@store), class: "nav-item nav-link" %> </li>
         <li class="nav-item"> <%= link_to "Items", admin_store_items_path(@store), class: "nav-item nav-link" %> </li>
         <li class="nav-item"> <%= link_to "Account", edit_user_path(current_user), class: "nav-item nav-link" %> </li>
+        <% if current_user.store_admin? %>
         <li class="nav-item"> <%= link_to "Analytics", admin_store_analytics_path(@store), class: "nav-item nav-link" %> </li>
+        <% end %>
         <% if current_user.store_admin? %>
           <li class="nav-item"> <%= link_to "Store Info", edit_store_path(@store.slug), class: "nav-item nav-link" %> </li>
           <li class="nav-item"> <%= link_to "Managers", admin_store_users_path(@store.slug), class: "nav-item nav-link" %> </li>
