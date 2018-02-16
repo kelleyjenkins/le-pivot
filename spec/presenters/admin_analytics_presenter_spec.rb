@@ -2,21 +2,23 @@ require 'rails_helper'
 
 describe AdminAnalyticsPresenter do
   let(:analytics) { AdminAnalyticsPresenter.new}
-  before do
-    user = create(:)
+  before :each do
+    user = create(:user)
     store = create(:store)
-    items = create_list(:item, 5, store: store)
+    @item1 = create(:item, store: store)
+    @item2 = create(:item, store: store)
+    @item3 = create(:item, store: store)
     order_1 = create(:order, user: user)
     order_2 = create(:order, user: user, status: 3)
-    order_3 = create(:order, status: 0)
-    order_4 = create(:order, status: 2)
-    order_5 = create(:order, status: 3)
+    order_3 = create(:order, user: user, status: 0)
+    order_4 = create(:order, user: user, status: 2)
+    order_5 = create(:order, user: user, status: 3)
 
-    order_item_1 = create(:order_item, store: store, order: order_1, item: items[0],  unit_price: items[0].price)
-    order_item_1 = create(:order_item, store: store, order: order_2, item: items[1],  unit_price: items[1].price)
-    order_item_1 = create(:order_item, store: store, order: order_3, item: items[2],  unit_price: items[2].price)
-    order_item_1 = create(:order_item, store: store, order: order_4, item: items[3],  unit_price: items[3].price)
-    order_item_1 = create(:order_item, store: store, order: order_5, item: items[0],  unit_price: items[4].price)
+    order_item_1 = create(:order_item, store: store, order: order_1, item: @item1,  unit_price: @item1.price)
+    order_item_2 = create(:order_item, store: store, order: order_2, item: @item2,  unit_price: @item2.price)
+    order_item_3 = create(:order_item, store: store, order: order_3, item: @item3,  unit_price: @item3.price)
+    order_item_4 = create(:order_item, store: store, order: order_4, item: @item1,  unit_price: @item1.price)
+    order_item_5 = create(:order_item, store: store, order: order_5, item: @item2,  unit_price: @item2.price)
 
   end
 
@@ -40,13 +42,13 @@ describe AdminAnalyticsPresenter do
 
   describe '#sales_by_item_title' do
     it 'returns total sales by item title' do
-      expect(analytics.sales_by_item_title).to eq({"Item 19"=>1, "Item 18"=>1, "Item 16"=>2, "Item 17"=>1})
+      expect(analytics.sales_by_item_title).to eq({"#{@item1.title}"=>2, "#{@item2.title}"=>2, "#{@item3.title}"=>1})
     end
   end
 
   describe '#status_for_items' do
     it 'returns status for items by name' do
-      expect(analytics.status_for_items).to eq({["Item 23", 0]=>1, ["Item 22", 3]=>1, ["Item 24", 2]=>1, ["Item 21", 3]=>1, ["Item 21", 1]=>1})
+      expect(analytics.status_for_items).to eq({["#{@item1.title}", 0]=>1, ["#{@item2.title}", 3]=>1, ["#{@item3.title}", 2]=>1})
     end
   end
 
