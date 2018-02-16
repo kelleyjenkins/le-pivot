@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
 
   def new
     order = current_user.orders.new
-    order.create_order_with_associations(current_user, @cart)
+    order.create_order_with_associations(current_user, @cart, params[:shipping], params[:total])
     @cart.destroy
     flash[:success] = "Order was successfully placed"
     redirect_to orders_path

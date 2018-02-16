@@ -17,15 +17,6 @@ class Seed
 
 
 
-  def run
-    associate_items_with_stores
-    associate_users_with_stores
-    associate_users_with_roles
-    associate_cloud_image_to_items
-    fill_order_items
-    update_orders_with_totals
-  end
-
 
   def associate_items_with_stores
     Item.first(1011).each do |item|
@@ -177,8 +168,18 @@ class Seed
   UserRole.create(user: ian5, role: role2)
 
   cory = User.create(first_name: "Cory", last_name: "Westerfield", email: "cory@turing.io", password: "password", address: "Turing", address_2: "1331 17th street", city: "Denver", state: "CO", zip: "80202")
+  UserRole.create(user: corey, role: role1)
 
   UserRole.create(user: cory, role: role1)
+  
+  def run
+    associate_items_with_stores
+    associate_users_with_stores
+    associate_users_with_roles
+    associate_cloud_image_to_items
+    fill_order_items
+    update_orders_with_totals
+  end
 
 end
 
