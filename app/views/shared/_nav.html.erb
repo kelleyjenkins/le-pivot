@@ -46,6 +46,7 @@
         <% end %>
         <li> <a href="/carts">Cart (<%= @cart.total_count %>)</a> </li>
         <% if current_user %>
+          <li> <%= link_to " Navigating as #{current_user.first_name}" %></li>
           <li> <%= link_to 'Logout', logout_path, method: :delete %></li>
         <% end %>
 
