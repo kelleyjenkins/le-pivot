@@ -25,7 +25,7 @@ describe AdminAnalyticsPresenter do
 
   describe '#total_sales' do
     it 'returns the total sales from an order' do
-      expect(analytics.total_sales).to eq 20.0
+      expect(analytics.total_sales).to eq 2000.0
     end
   end
 
