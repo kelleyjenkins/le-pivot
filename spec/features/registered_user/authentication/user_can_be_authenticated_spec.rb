@@ -4,9 +4,9 @@ describe "Returning user logs in" do
   context "with valid credentials" do
     it "and is sent to their dashboard with 'logout' showing instead of 'login'" do
 
-      user = User.create(first_name: "Billie", last_name: "Billington", password: "password", email: "billie@billington.com", address: "1234 5th street", address_2: "#321", city: "Bloomington", state: "IA", zip: "12345", phone: "303-867-5309")
-      user.user_roles << Role.find(4)
-
+      user = create(:user, first_name: "Billie", last_name: "Billington", password: "password", email: "billie@billington.com", address: "1234 5th street", address_2: "#321", city: "Bloomington", state: "IA", zip: "12345", phone: "303-867-5309")
+      role = create(:role, title: "registered_user")
+      user_role = create(:user_role, user: user, role: role)
 
       login_user(user.email, user.password)
 

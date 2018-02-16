@@ -24,11 +24,6 @@ RSpec.describe User, type: :model do
         expect(user).to be_invalid
       end
 
-      it "is invalid without a unique e-mail" do
-        user_1 = create(:user, email: "gob@example.com")
-        user_2 = build(:user, email: "gob@example.com")
-        expect(user_2).to be_invalid
-      end
     end
   end
 
