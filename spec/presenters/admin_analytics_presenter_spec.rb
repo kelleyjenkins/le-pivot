@@ -3,16 +3,17 @@ require 'rails_helper'
 describe AdminAnalyticsPresenter do
   let(:analytics) { AdminAnalyticsPresenter.new}
   before :each do
-    user = create(:user)
+    @user = create(:user)
+    @user2 = create(:user)
     store = create(:store)
     @item1 = create(:item, store: store)
     @item2 = create(:item, store: store)
     @item3 = create(:item, store: store)
-    order_1 = create(:order, user: user)
-    order_2 = create(:order, user: user, status: 3)
-    order_3 = create(:order, user: user, status: 0)
-    order_4 = create(:order, user: user, status: 2)
-    order_5 = create(:order, user: user, status: 3)
+    order_1 = create(:order, user: @user)
+    order_2 = create(:order, user: @user2, status: 3)
+    order_3 = create(:order, user: @user, status: 0)
+    order_4 = create(:order, user: @user2, status: 2)
+    order_5 = create(:order, user: @user, status: 3)
 
     order_item_1 = create(:order_item, store: store, order: order_1, item: @item1,  unit_price: @item1.price)
     order_item_2 = create(:order_item, store: store, order: order_2, item: @item2,  unit_price: @item2.price)
@@ -48,19 +49,19 @@ describe AdminAnalyticsPresenter do
 
   describe '#status_for_items' do
     it 'returns status for items by name' do
-      expect(analytics.status_for_items).to eq({["#{@item1.title}", 0]=>1, ["#{@item2.title}", 3]=>1, ["#{@item3.title}", 2]=>1})
+      expect(analytics.status_for_items).to eq({["#{@item1.title}", 1]=>1, ["#{@item1.title}", 2]=>1, ["#{@item2.title}", 3]=>2, ["#{@item3.title}", 0]=>1})
     end
   end
 
   describe '#orders_per_customer' do
     it 'returns user orders' do
-      expect(analytics.orders_per_customer).to eq({"gob23@example.com"=>1, "gob24@example.com"=>1, "gob21@example.com"=>2, "gob22@example.com"=>1})
+      expect(analytics.orders_per_customer).to eq({"#{@user.email}"=>3, "#{@user2.email}"=>2})
     end
   end
 
   describe '#items_ordered_per_customer' do
     it 'returns quanity of items order by customer' do
-      expect(analytics.items_ordered_per_customer).to eq({"gob27@example.com"=>1, "gob26@example.com"=>1, "gob25@example.com"=>2, "gob28@example.com"=>1})
+      expect(analytics.items_ordered_per_customer).to eq({"#{@user.email}"=>3, "#{@user2.email}"=>2})
     end
   end
 end
