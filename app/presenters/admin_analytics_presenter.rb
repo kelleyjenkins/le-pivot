@@ -12,6 +12,10 @@ class AdminAnalyticsPresenter
     Order.count_of_completed_orders
   end
 
+  def total_orders
+    Order.count
+  end
+
   def sales_by_item_title
     Item.total_sold_by_item
   end

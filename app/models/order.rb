@@ -16,6 +16,10 @@ class Order < ApplicationRecord
     created_at.strftime('%b. %d, %Y')
   end
 
+  def self.total_orders
+    count
+  end
+
   def self.count_by_status
     group(:status).count
   end
@@ -29,7 +33,8 @@ class Order < ApplicationRecord
   end
 
   def self.shop_total_gross
-		where(status: :completed).joins(:items).sum(:price)
+		# where(status: :completed).joins(:items).sum(:price)
+    where(status: "completed").sum("orders.total")
   end
 
   def grand_total
@@ -52,9 +57,6 @@ class Order < ApplicationRecord
     hash
   end
 
-  def self.filter_by_status(status)
-    where(status: status)
-  end
 
   def create_order_with_associations(user, cart, rate, total)
 

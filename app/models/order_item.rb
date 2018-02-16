@@ -8,7 +8,7 @@ class OrderItem < ApplicationRecord
   end
 
   def self.average_quantity
-    average(:quantity).to_i
+    average(:quantity).to_f.round(2)
   end
 
 end
