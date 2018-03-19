@@ -1,6 +1,6 @@
 # The Pivot
 
-Le Pivot is a brownfield project that began as a single-tenant e-commerce web application. The goal of the project was to convert the existing application into a multi-tenant app. Additional features include role-based authorization, new store approvals, streamlined check-out process, billing with Stripe, storing credit cards for users, providing business insights to administrators and more.  
+Le Pivot is a brownfield project that began as a single-tenant e-commerce web application. The goal of the project was to convert the existing application into a multi-tenant app. Additional features include role-based authorization, new store approvals, streamlined check-out process, billing with Stripe, storing credit cards for users, providing business insights to administrators and more. This project was completed over 2 weeks by 3 students at Turing School of Software Design & Development. 
 
 ## Deployment
 
