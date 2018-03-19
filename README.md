@@ -4,7 +4,7 @@ Le Pivot is a brownfield project that began as a single-tenant e-commerce web ap
 
 ## Deployment
 
-This project is deployed at [https://vast-dawn-23202.herokuapp.com/]
+This project is deployed at https://vast-dawn-23202.herokuapp.com/
 
 ## Setup
 
