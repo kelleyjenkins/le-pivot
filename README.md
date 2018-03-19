@@ -13,11 +13,13 @@ Built using Ruby 2.4.1 and Rails 5.1.3
 Install required gems:
 `$ bundle install`
 
-Load the database dump:
+Run the following commands to load the database:
 
+```
 rake import_dump:load
 rake db:migrate
 rake db:seed
+```
 
 After the import you should see a return value of 1011 when running `Item.count` in the console.
 
